@@ -38,7 +38,11 @@ const ogImage = new URL(profile.photo, Astro.site).href
           <p class="role">{profile.role} · {profile.location}</p>
           <p class="summary">{profile.summary}</p>
           <nav class="links">
-            {links.map((l) => <a href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>)}
+            {links.map((l) =>
+              l.href.startsWith('mailto:')
+                ? <a href={l.href}>{l.label}</a>
+                : <a href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>
+            )}
           </nav>
         </div>
       </header>
