@@ -20,7 +20,7 @@ export const now = [
   {
     title: 'Hacobell',
     body: '物流マッチングプラットフォームの開発。',
-    href: 'https://www.hacobell.co.jp/',
+    href: 'https://www.hacobell.com/',
   },
   {
     title: 'AI 駆動開発',
