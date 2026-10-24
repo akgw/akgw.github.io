@@ -33,8 +33,8 @@ export const now = [
 ]
 
 export const career = [
-  { period: '20xx –', company: '株式会社Hacobell', en: 'Hacobell Inc.' },
-  { period: '2021.07 – 20xx', company: '株式会社BuySell Technologies', en: 'BuySell Technologies Co., Ltd.' },
+  { period: '2024 –', company: '株式会社Hacobell', en: 'Hacobell Inc.' },
+  { period: '2021.07 – 2024', company: '株式会社BuySell Technologies', en: 'BuySell Technologies Co., Ltd.' },
   { period: '2017.11 – 2021.06', company: '株式会社エス・エム・エスキャリア', en: 'SMS Career Co., Ltd.' },
   { period: '2016.04 – 2017.10', company: '北電情報システムサービス株式会社', en: 'Hokuden Information System Service Co., Inc.' },
   { period: '2013.04 – 2016.03', company: 'グリー株式会社', en: 'GREE, Inc.' },
