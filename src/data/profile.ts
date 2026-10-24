@@ -20,15 +20,11 @@ export const now = [
   {
     title: 'Hacobell',
     body: '物流マッチングプラットフォームの開発。',
-    href: 'https://www.hacobell.co.jp/',
+    href: 'https://www.hacobell.com/',
   },
   {
     title: 'AI 駆動開発',
     body: '実装は Claude、人間はレビューと動作確認だけ、という体制で開発を回す実験。PdM / PjM / TL のエージェント分業や夜間 routine を試している。',
-  },
-  {
-    title: 'ゲーム開発',
-    body: 'Godot 4 で Android 向けのバドミントン × グリッド戦略ゲームを AI に作らせている。',
   },
 ]
 
@@ -49,7 +45,7 @@ export const skills = [
   { group: 'Backend', items: ['TypeScript', 'PHP / Laravel', 'Ruby on Rails', 'Go', 'Python'] },
   { group: 'Frontend', items: ['Vue', 'React'] },
   { group: 'Infra / Data', items: ['AWS', 'Terraform', 'BigQuery', 'RDB'] },
-  { group: 'AI / Other', items: ['Claude Code', 'Godot', 'Google Apps Script', 'Raycast'] },
+  { group: 'AI / Other', items: ['Claude Code', 'Google Apps Script', 'Raycast'] },
   { group: 'Management', items: ['People Management', 'Product Management', 'Tech Lead', 'Engineer Recruiting'] },
 ]
 
