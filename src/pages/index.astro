@@ -1,0 +1,194 @@
+---
+import { books, career, education, hobbies, links, mind, now, profile, skills } from '../data/profile'
+
+const title = `${profile.name} | ${profile.nameJa}`
+const description = `${profile.nameJa}の自己紹介ページです。${profile.summary}`
+const ogImage = new URL(profile.photo, Astro.site).href
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={Astro.site} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.site} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-RR6NJMGX5V"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || []
+      function gtag() { dataLayer.push(arguments) }
+      gtag('js', new Date())
+      gtag('config', 'G-RR6NJMGX5V')
+    </script>
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <img class="avatar" src={profile.photo} alt={profile.name} width="120" height="120" />
+        <div>
+          <h1>{profile.name}<span class="ja">{profile.nameJa}</span></h1>
+          <p class="role">{profile.role} · {profile.location}</p>
+          <p class="summary">{profile.summary}</p>
+          <nav class="links">
+            {links.map((l) => <a href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>)}
+          </nav>
+        </div>
+      </header>
+
+      <section>
+        <h2>Now</h2>
+        <ul class="cards">
+          {now.map((n) => (
+            <li class="card">
+              <h3>{n.href ? <a href={n.href} target="_blank" rel="noopener">{n.title} ↗</a> : n.title}</h3>
+              <p>{n.body}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Career</h2>
+        <ol class="timeline">
+          {career.map((c) => (
+            <li>
+              <span class="period">{c.period}</span>
+              <span>{c.company}<small>{c.en}</small></span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <ol class="timeline">
+          {education.map((e) => (
+            <li>
+              <span class="period">{e.period}</span>
+              <span>{e.school}<small>{e.en}</small></span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <dl class="skills">
+          {skills.map((s) => (
+            <div>
+              <dt>{s.group}</dt>
+              <dd>{s.items.map((i) => <span class="tag">{i}</span>)}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section>
+        <h2>Mind</h2>
+        <ol class="mind">
+          {mind.map((m) => (
+            <li><strong>{m.title}</strong> — {m.body}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section>
+        <h2>Books that influenced me</h2>
+        <ul class="books">
+          {books.map((b) => (
+            <li><a href={`https://www.amazon.co.jp/dp/${b.asin}?tag=akgw-22`} target="_blank" rel="noopener sponsored">{b.title}</a></li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Hobbies</h2>
+        <p class="hobbies">{hobbies.map((h) => <span class="tag">{h}</span>)}</p>
+      </section>
+
+      <footer>© {new Date().getFullYear()} {profile.name}</footer>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --text: #1c1917;
+    --muted: #78716c;
+    --border: #e7e5e4;
+    --accent: #2563eb;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c0a09;
+      --surface: #1c1917;
+      --text: #f5f5f4;
+      --muted: #a8a29e;
+      --border: #292524;
+      --accent: #60a5fa;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    line-height: 1.7;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  main { max-width: 760px; margin: 0 auto; padding: 64px 16px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0; }
+  h2 { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+  h3 { font-size: 1rem; margin: 0 0 4px; }
+  section { margin-top: 56px; }
+  ul, ol { list-style: none; margin: 0; padding: 0; }
+
+  .hero { display: flex; gap: 28px; align-items: center; }
+  .avatar { border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); }
+  .ja { display: block; font-size: 1rem; font-weight: 500; color: var(--muted); margin-top: 6px; }
+  .role { color: var(--muted); margin: 8px 0 0; }
+  .summary { margin: 12px 0 0; }
+  .links { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+
+  .cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .card p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+
+  .timeline li { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .period { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.9rem; }
+  .timeline small { display: block; color: var(--muted); font-size: 0.8rem; }
+
+  .skills > div { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 8px 0; }
+  .skills dt { color: var(--muted); font-size: 0.9rem; }
+  .skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { display: inline-block; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 2px 12px; font-size: 0.85rem; }
+  .hobbies { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+
+  .mind { counter-reset: mind; }
+  .mind li { counter-increment: mind; padding: 6px 0; }
+  .mind li::before { content: counter(mind) '. '; color: var(--muted); }
+
+  .books { display: flex; flex-direction: column; gap: 6px; }
+
+  footer { margin-top: 72px; color: var(--muted); font-size: 0.8rem; }
+
+  @media (max-width: 560px) {
+    main { padding-top: 40px; }
+    .hero { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .avatar { width: 96px; height: 96px; }
+    .timeline li, .skills > div { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>

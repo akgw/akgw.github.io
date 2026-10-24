@@ -1,24 +1,14 @@
-# carrier
-https://akgw.github.io/
+# akgw.github.io
 
-# color
-https://www.happyhues.co/palettes/8
+自己紹介ページ。https://akgw.github.io/
 
-## Build Setup
+- [Astro](https://astro.build/) の静的サイト。載せる情報は `src/data/profile.ts` に集約している
+- `main` への push で GitHub Actions がビルドし GitHub Pages にデプロイする
 
-```bash
-# install dependencies
-$ yarn install
+## 開発
 
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+```sh
+pnpm install
+pnpm dev      # http://localhost:4321
+pnpm build    # 型チェック + dist/ に出力
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
